@@ -1,0 +1,10 @@
+prompts:
+  - file://../prompts/review.md
+providers:
+  - echo
+tests:
+  - vars:
+      question: "Can support invent a refund policy?"
+    assert:
+      - type: contains
+        value: "policy"

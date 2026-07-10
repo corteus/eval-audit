@@ -1,0 +1,28 @@
+{
+  "name": "eval-audit",
+  "version": "0.1.0",
+  "description": "Static eval-coverage auditor for AI repositories.",
+  "type": "module",
+  "bin": {
+    "eval-audit": "./bin/eval-audit.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/eval-audit.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corteus/eval-audit.git"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "static-analysis",
+    "evals",
+    "coverage"
+  ],
+  "author": "Corteus",
+  "license": "MIT"
+}
