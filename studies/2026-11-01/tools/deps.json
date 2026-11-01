@@ -1,0 +1,404 @@
+{
+ "1Panel-dev_MaxKB": {
+  "manifests": 2,
+  "llm_deps": [
+   "anthropic",
+   "cohere",
+   "dashscope",
+   "langchain",
+   "langchain-anthropic",
+   "langchain-aws",
+   "langchain-community",
+   "langchain-core",
+   "langchain-deepseek",
+   "langchain-google-genai",
+   "langchain-huggingface",
+   "langchain-mcp-adapters",
+   "langchain-ollama",
+   "langchain-openai"
+  ]
+ },
+ "Anionex_banana-slides": {
+  "manifests": 4,
+  "llm_deps": [
+   "anthropic",
+   "dashscope",
+   "google-genai",
+   "openai",
+   "zhipuai"
+  ]
+ },
+ "AstrBotDevs_AstrBot": {
+  "manifests": 4,
+  "llm_deps": [
+   "anthropic",
+   "dashscope",
+   "google-genai",
+   "openai"
+  ]
+ },
+ "CherryHQ_cherry-studio": {
+  "manifests": 15,
+  "llm_deps": [
+   "@ai-sdk/amazon-bedrock",
+   "@ai-sdk/anthropic",
+   "@ai-sdk/azure",
+   "@ai-sdk/bytedance",
+   "@ai-sdk/cerebras",
+   "@ai-sdk/cohere",
+   "@ai-sdk/deepseek",
+   "@ai-sdk/devtools",
+   "@ai-sdk/gateway",
+   "@ai-sdk/google",
+   "@ai-sdk/google-vertex",
+   "@ai-sdk/groq",
+   "@ai-sdk/huggingface",
+   "@ai-sdk/mistral",
+   "@ai-sdk/open-responses",
+   "@ai-sdk/openai",
+   "@ai-sdk/openai-compatible",
+   "@ai-sdk/perplexity",
+   "@ai-sdk/provider",
+   "@ai-sdk/provider-utils",
+   "@ai-sdk/react",
+   "@ai-sdk/test-server",
+   "@ai-sdk/togetherai",
+   "@ai-sdk/xai",
+   "@anthropic-ai/claude-agent-sdk",
+   "@anthropic-ai/sdk",
+   "@google/genai",
+   "@mistralai/mistralai",
+   "@openrouter/ai-sdk-provider",
+   "ai"
+  ]
+ },
+ "DayuanJiang_next-ai-draw-io": {
+  "manifests": 3,
+  "llm_deps": [
+   "@ai-sdk/amazon-bedrock",
+   "@ai-sdk/anthropic",
+   "@ai-sdk/azure",
+   "@ai-sdk/deepseek",
+   "@ai-sdk/google",
+   "@ai-sdk/google-vertex",
+   "@ai-sdk/openai",
+   "@ai-sdk/openai-compatible",
+   "@ai-sdk/react",
+   "@openrouter/ai-sdk-provider",
+   "ai"
+  ]
+ },
+ "Fosowl_agenticSeek": {
+  "manifests": 5,
+  "llm_deps": [
+   "litellm",
+   "ollama",
+   "openai"
+  ]
+ },
+ "Graphify-Labs_graphify": {
+  "manifests": 2,
+  "llm_deps": [
+   "anthropic",
+   "ollama",
+   "openai"
+  ]
+ },
+ "HKUDS_Vibe-Trading": {
+  "manifests": 9,
+  "llm_deps": [
+   "anthropic",
+   "langchain",
+   "langchain-anthropic",
+   "langchain-core",
+   "langchain-deepseek",
+   "langchain-openai",
+   "langchain-protocol",
+   "openai"
+  ]
+ },
+ "ItzCrazyKns_Vane": {
+  "manifests": 1,
+  "llm_deps": [
+   "@google/genai",
+   "ollama",
+   "openai"
+  ]
+ },
+ "NanmiCoder_cc-haha": {
+  "manifests": 14,
+  "llm_deps": [
+   "@anthropic-ai/sdk"
+  ]
+ },
+ "NousResearch_hermes-agent": {
+  "manifests": 20,
+  "llm_deps": [
+   "anthropic",
+   "openai"
+  ]
+ },
+ "OpenHands_OpenHands": {
+  "manifests": 2,
+  "llm_deps": []
+ },
+ "QwenLM_qwen-code": {
+  "manifests": 47,
+  "llm_deps": [
+   "@anthropic-ai/claude-agent-sdk",
+   "@anthropic-ai/sdk",
+   "@google/genai",
+   "openai"
+  ]
+ },
+ "SWE-agent_SWE-agent": {
+  "manifests": 1,
+  "llm_deps": [
+   "litellm"
+  ]
+ },
+ "Significant-Gravitas_AutoGPT": {
+  "manifests": 7,
+  "llm_deps": [
+   "@ai-sdk/react",
+   "ai",
+   "anthropic",
+   "groq",
+   "ollama",
+   "openai"
+  ]
+ },
+ "Skyvern-AI_skyvern": {
+  "manifests": 6,
+  "llm_deps": [
+   "anthropic",
+   "browser-use",
+   "litellm",
+   "openai"
+  ]
+ },
+ "ZhuLinsen_daily_stock_analysis": {
+  "manifests": 5,
+  "llm_deps": [
+   "litellm",
+   "openai"
+  ]
+ },
+ "ahmedkhaleel2004_gitdiagram": {
+  "manifests": 3,
+  "llm_deps": [
+   "@anthropic-ai/sdk",
+   "openai"
+  ]
+ },
+ "arc53_DocsGPT": {
+  "manifests": 11,
+  "llm_deps": [
+   "anthropic",
+   "google-genai",
+   "openai"
+  ]
+ },
+ "botpress_botpress": {
+  "manifests": 137,
+  "llm_deps": [
+   "@anthropic-ai/sdk",
+   "@google/genai",
+   "@mistralai/mistralai",
+   "openai"
+  ]
+ },
+ "bytedance_deer-flow": {
+  "manifests": 20,
+  "llm_deps": [
+   "@langchain/core",
+   "@langchain/langgraph-sdk",
+   "ai",
+   "anthropic",
+   "langchain",
+   "langchain-anthropic",
+   "langchain-core",
+   "langchain-deepseek",
+   "langchain-google-genai",
+   "langchain-mcp-adapters",
+   "langchain-openai",
+   "langchain-openviking",
+   "ollama"
+  ]
+ },
+ "can1357_oh-my-pi": {
+  "manifests": 24,
+  "llm_deps": []
+ },
+ "dyad-sh_dyad": {
+  "manifests": 20,
+  "llm_deps": [
+   "@ai-sdk/amazon-bedrock",
+   "@ai-sdk/anthropic",
+   "@ai-sdk/azure",
+   "@ai-sdk/google",
+   "@ai-sdk/google-vertex",
+   "@ai-sdk/mcp",
+   "@ai-sdk/openai",
+   "@ai-sdk/openai-compatible",
+   "@ai-sdk/provider-utils",
+   "@ai-sdk/xai",
+   "ai"
+  ]
+ },
+ "eosphoros-ai_DB-GPT": {
+  "manifests": 11,
+  "llm_deps": [
+   "dashscope",
+   "openai"
+  ]
+ },
+ "harry0703_MoneyPrinterTurbo": {
+  "manifests": 4,
+  "llm_deps": [
+   "dashscope",
+   "google-genai",
+   "litellm",
+   "openai"
+  ]
+ },
+ "hypit-ai_hypit": {
+  "manifests": 109,
+  "llm_deps": []
+ },
+ "iOfficeAI_AionUi": {
+  "manifests": 6,
+  "llm_deps": [
+   "@anthropic-ai/sdk",
+   "@google/genai",
+   "openai"
+  ]
+ },
+ "kortix-ai_suna": {
+  "manifests": 27,
+  "llm_deps": [
+   "@ai-sdk/amazon-bedrock",
+   "@ai-sdk/anthropic",
+   "@ai-sdk/openai",
+   "@anthropic-ai/claude-agent-sdk",
+   "ai"
+  ]
+ },
+ "labring_FastGPT": {
+  "manifests": 19,
+  "llm_deps": [
+   "openai"
+  ]
+ },
+ "langbot-app_LangBot": {
+  "manifests": 45,
+  "llm_deps": [
+   "anthropic",
+   "dashscope",
+   "langchain",
+   "langchain-core",
+   "langchain-text-splitters",
+   "litellm",
+   "ollama",
+   "openai"
+  ]
+ },
+ "langgenius_dify": {
+  "manifests": 58,
+  "llm_deps": [
+   "litellm",
+   "pydantic-ai-harness",
+   "pydantic-ai-slim"
+  ]
+ },
+ "linshenkx_prompt-optimizer": {
+  "manifests": 9,
+  "llm_deps": [
+   "@anthropic-ai/sdk",
+   "@google/genai",
+   "openai"
+  ]
+ },
+ "onyx-dot-app_onyx": {
+  "manifests": 19,
+  "llm_deps": [
+   "cohere",
+   "google-genai",
+   "langchain-core",
+   "litellm",
+   "openai"
+  ]
+ },
+ "open-webui_open-webui": {
+  "manifests": 5,
+  "llm_deps": [
+   "anthropic",
+   "langchain-classic",
+   "langchain-core",
+   "langchain-text-splitters",
+   "openai"
+  ]
+ },
+ "paperclipai_paperclip": {
+  "manifests": 50,
+  "llm_deps": [
+   "@ai-sdk/amazon-bedrock",
+   "@ai-sdk/anthropic",
+   "@ai-sdk/google",
+   "@ai-sdk/openai",
+   "@ai-sdk/xai",
+   "@anthropic-ai/sdk",
+   "@openrouter/ai-sdk-provider",
+   "ai"
+  ]
+ },
+ "paperless-ngx_paperless-ngx": {
+  "manifests": 3,
+  "llm_deps": [
+   "llama-index-core",
+   "llama-index-embeddings-huggingface",
+   "llama-index-embeddings-ollama",
+   "llama-index-embeddings-openai-like",
+   "llama-index-llms-ollama",
+   "llama-index-llms-openai-like",
+   "openai"
+  ]
+ },
+ "rowboatlabs_rowboat": {
+  "manifests": 13,
+  "llm_deps": [
+   "@ai-sdk/anthropic",
+   "@ai-sdk/google",
+   "@ai-sdk/openai",
+   "@ai-sdk/openai-compatible",
+   "@ai-sdk/provider",
+   "@openrouter/ai-sdk-provider",
+   "ai"
+  ]
+ },
+ "sansan0_TrendRadar": {
+  "manifests": 1,
+  "llm_deps": [
+   "litellm"
+  ]
+ },
+ "virgiliojr94_book-to-skill": {
+  "manifests": 1,
+  "llm_deps": []
+ },
+ "winfunc_opcode": {
+  "manifests": 1,
+  "llm_deps": []
+ },
+ "yamadashy_repomix": {
+  "manifests": 5,
+  "llm_deps": []
+ },
+ "zhayujie_CowAgent": {
+  "manifests": 4,
+  "llm_deps": [
+   "dashscope",
+   "google-generativeai"
+  ]
+ }
+}

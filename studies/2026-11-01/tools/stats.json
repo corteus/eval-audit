@@ -1,0 +1,92 @@
+{
+ "repos": 30,
+ "python": 15,
+ "ts": 15,
+ "verdicts": {
+  "Partial coverage": 1,
+  "Smoke only": 11,
+  "No evals": 17,
+  "no verdict (0 call sites)": 1
+ },
+ "verdictsLoose": {
+  "Well covered": 19,
+  "no verdict": 1,
+  "Partial coverage": 7,
+  "Smoke only": 2,
+  "No evals": 1
+ },
+ "verdictsV010": {
+  "Well covered": 17,
+  "Partial coverage": 7,
+  "no verdict": 3,
+  "No evals": 1,
+  "Smoke only": 2
+ },
+ "reposWithVerdict": 29,
+ "medianEvalPct": 0,
+ "medianLoosePct": 91.7,
+ "meanEvalPct": 3,
+ "totalCalls": 318,
+ "totalCovered": 18,
+ "totalCoveredLoose": 238,
+ "reposWithAnyEvalFile": 12,
+ "reposWithAnyCoveredCall": 5,
+ "reposWithUnitTestsTouching": 28,
+ "reposWithCiEvalCmd": [
+  "paperclipai/paperclip"
+ ],
+ "reposCiGated": [],
+ "medianCalls": 10,
+ "minCalls": 0,
+ "maxCalls": 26,
+ "reposCallsLe3": [
+  "langgenius/dify (1)",
+  "open-webui/open-webui (0)",
+  "harry0703/MoneyPrinterTurbo (2)",
+  "paperless-ngx/paperless-ngx (1)",
+  "paperclipai/paperclip (2)",
+  "DayuanJiang/next-ai-draw-io (3)",
+  "labring/FastGPT (2)"
+ ],
+ "truncatedV010": [
+  "NousResearch/hermes-agent",
+  "Significant-Gravitas/AutoGPT",
+  "langgenius/dify",
+  "onyx-dot-app/onyx",
+  "paperclipai/paperclip",
+  "CherryHQ/cherry-studio",
+  "QwenLM/qwen-code",
+  "kortix-ai/suna"
+ ],
+ "truncatedNow": [],
+ "maxFiles": 18913,
+ "commitDates": [
+  "2026-09-01T19:42:10+05:30",
+  "2026-11-02T01:26:13+09:00"
+ ],
+ "starsRange": [
+  14973,
+  259424
+ ],
+ "http": {
+  "200": 30
+ },
+ "toolVersions": [
+  "0.2.0-study"
+ ],
+ "schema": [
+  2
+ ],
+ "byLang": {
+  "Python": {
+   "Partial coverage": 1,
+   "Smoke only": 6,
+   "No evals": 7,
+   "no verdict (0 call sites)": 1
+  },
+  "TypeScript": {
+   "Smoke only": 5,
+   "No evals": 10
+  }
+ }
+}

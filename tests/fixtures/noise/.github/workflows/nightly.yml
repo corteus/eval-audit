@@ -1,0 +1,10 @@
+name: nightly evals
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - run: npx promptfoo@latest eval -c evals/promptfooconfig.yaml

@@ -21,7 +21,7 @@ export async function runCli(argv) {
     return;
   }
 
-  const result = await analyzeRepository(options.targetPath);
+  const result = await analyzeRepository(options.targetPath, { maxFiles: options.maxFiles });
 
   if (options.json) {
     console.log(JSON.stringify(result, null, 2));
@@ -46,7 +46,8 @@ function parseArgs(argv) {
     help: false,
     version: false,
     targetPath: null,
-    minCoverage: null
+    minCoverage: null,
+    maxFiles: undefined
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -64,6 +65,11 @@ function parseArgs(argv) {
       i += 1;
     } else if (arg.startsWith('--min-coverage=')) {
       options.minCoverage = parseCoverage(arg.slice('--min-coverage='.length));
+    } else if (arg === '--max-files') {
+      options.maxFiles = parsePositiveInteger(argv[i + 1], '--max-files');
+      i += 1;
+    } else if (arg.startsWith('--max-files=')) {
+      options.maxFiles = parsePositiveInteger(arg.slice('--max-files='.length), '--max-files');
     } else if (arg === '--help' || arg === '-h') {
       options.help = true;
     } else if (arg === '--version' || arg === '-v') {
@@ -78,6 +84,14 @@ function parseArgs(argv) {
   }
 
   return options;
+}
+
+function parsePositiveInteger(value, flag) {
+  const number = Number(value);
+  if (!Number.isInteger(number) || number < 1) {
+    throw new Error(`${flag} requires a positive integer`);
+  }
+  return number;
 }
 
 function parseCoverage(value) {
@@ -98,6 +112,7 @@ Options:
   --json              Print machine-readable JSON.
   --no-color          Disable ANSI color in the terminal report.
   --min-coverage N    Exit non-zero when call-site coverage is below N percent.
+  --max-files N       Stop walking after N readable files (default 8000).
   -h, --help          Show this help text.
   -v, --version       Print the CLI version.`;
 }

@@ -1,0 +1,41 @@
+population 334
+3	Anionex_banana-sli	backend/services/ai_providers/image/genai_provider.py:103	google.generate_content	| response = self.client.models.generate_content(
+11	Anionex_banana-sli	backend/services/ai_providers/text/openai_provider.py:55	openai.chat.completions	| response = self.client.chat.completions.create(
+12	Anionex_banana-sli	backend/services/ai_providers/text/openai_provider.py:67	openai.chat.completions	| response = self.client.chat.completions.create(
+19	AstrBotDevs_AstrBo	astrbot/core/provider/sources/anthropic_source.py:681	anthropic.messages	| lambda: self.client.messages.stream(
+23	AstrBotDevs_AstrBo	strbot/core/provider/sources/openai_responses_source.py:352	openai.responses	| lambda: self.client.responses.create(
+27	CherryHQ_cherry-st	packages/aiCore/src/core/context/middleware.ts:350	ai-sdk.generateText	| const { text } = await generateText({
+29	CherryHQ_cherry-st	packages/aiCore/src/core/runtime/executor.ts:126	ai-sdk.generateText	| async generateText(params: generateTextParams): Promise<ReturnType<typeof _generateText>> 
+44	CherryHQ_cherry-st	src/main/ipc/handlers/ai.ts:116	ai-sdk.generateText	| : application.get('AiService').generateText(generate)
+51	Fosowl_agenticSeek	sources/llm_provider.py:185	openai.chat.completions	| completion = client.chat.completions.create(
+53	Fosowl_agenticSeek	sources/llm_provider.py:236	anthropic.messages	| response = client.messages.create(
+59	Fosowl_agenticSeek	sources/llm_provider.py:437	openai.chat.completions	| response = client.chat.completions.create(
+61	Graphify-Labs_grap	graphify/llm.py:1630	openai.chat.completions	| resp = client.chat.completions.create(**kwargs)
+66	Graphify-Labs_grap	graphify/llm.py:3327	openai.chat.completions	| resp = client.chat.completions.create(**kwargs)
+71	HKUDS_Vibe-Trading	agent/src/agent/loop.py:1634	client.chat	| summary_resp = self.llm.chat([{"role": "user", "content": prompt}])
+85	ItzCrazyKns_Vane	src/lib/models/providers/ollama/ollamaLLM.ts:123	ai-sdk.streamText	| async *streamText(
+98	NousResearch_herme	agent/anthropic_adapter.py:656	anthropic.messages	| """Build kwargs for anthropic.messages.create(). ``max_tokens`` is the OUTPUT cap for one
+114	NousResearch_herme	agent/chat_completion_helpers.py:787	openai.chat.completions	| return agent.client.chat.completions.create(**api_kwargs)
+121	NousResearch_herme	/darwinian-evolver/templates/custom_problem_template.py:55	openai.chat.completions	| r = _client().chat.completions.create(
+143	Significant-Gravit	latform/backend/backend/copilot/graphiti/flex_client.py:115	openai.chat.completions	| return await self.client.chat.completions.create(
+149	Significant-Gravit	autogpt_platform/backend/backend/data/tally.py:417	openai.chat.completions	| client.chat.completions.create(
+159	Significant-Gravit	autogpt_platform/backend/backend/util/llm/providers.py:1246	openai.chat.completions	| client.chat.completions.create(**create_kwargs),
+166	ZhuLinsen_daily_st	src/analyzer.py:3105	litellm.completion	| return litellm.completion(**hermes_kwargs)
+167	ZhuLinsen_daily_st	src/analyzer.py:3119	litellm.completion	| return litellm.completion(**effective_kwargs)
+180	ahmedkhaleel2004_g	experiments/video-bespoke/design.ts:140	openai.responses	| const response = await client.responses.create({
+182	ahmedkhaleel2004_g	experiments/video-bespoke/judge.ts:81	openai.responses	| const response = await new OpenAI().responses.create({
+192	ahmedkhaleel2004_g	src/server/visibility/ai-ask.ts:101	openai.responses	| client.responses.create(
+196	botpress_botpress	integrations/mistral-ai/src/actions/generate-content.ts:114	mistral.chat.complete	| response = await mistral.chat.complete(request)
+204	botpress_botpress	plugins/conversation-insights/src/tagsUpdater.ts:67	ai-sdk.generateText	| let llmOutput = await cognitiveClient.generateText(props.prompt)
+229	dyad-sh_dyad	lers/local_agent/tools/explore_chat_history_subagent.ts:133	ai-sdk.streamText	| const streamResult = streamText({
+230	dyad-sh_dyad	ipc/handlers/local_agent/tools/explore_code_subagent.ts:191	ai-sdk.streamText	| const streamResult = streamText({
+240	kortix-ai_suna	andbox-agent-server/src/lib/project-snapshot/archive.ts:211	ai-sdk.streamObject	| streamed = await streamObject(
+241	kortix-ai_suna	andbox-agent-server/src/lib/project-snapshot/hydrate.ts:93	ai-sdk.streamObject	| const streamed = await streamObject(
+242	kortix-ai_suna	packages/llm-gateway/src/transports/ai-sdk/index.ts:339	ai-sdk.streamText	| const result = streamText({
+253	linshenkx_prompt-o	packages/core/src/services/image/adapters/gemini.ts:218	google.generateContent	| const response = await genAI.models.generateContent({
+270	linshenkx_prompt-o	ckages/core/src/services/llm/adapters/openai-adapter.ts:970	openai.chat.completions	| const response: any = await openai.chat.completions.create(completionConfig)
+271	linshenkx_prompt-o	ckages/core/src/services/llm/adapters/openai-adapter.ts:1039	openai.chat.completions	| const response: any = await openai.chat.completions.create(completionConfig)
+274	linshenkx_prompt-o	ckages/core/src/services/llm/adapters/openai-adapter.ts:1394	openai.chat.completions	| ? await openai.chat.completions.create(completionConfig, { signal: callbacks.signal })
+283	onyx-dot-app_onyx	backend/onyx/file_processing/image_summarization.py:137	llm.invoke	| response = llm.invoke(
+300	paperclipai_paperc	server/src/services/prompt-injection-provider.ts:94	ai-sdk.generateText	| const result = await generateText({ model, system: PROMPT_INJECTION_POLICY, prompt: input.
+321	sansan0_TrendRadar	trendradar/ai/analyzer.py:397	client.chat	| return self.client.chat(messages)

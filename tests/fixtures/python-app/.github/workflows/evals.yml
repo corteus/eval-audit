@@ -1,0 +1,9 @@
+name: evals
+on:
+  pull_request:
+jobs:
+  evals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: uv run inspect eval evals/eval_summarize.py

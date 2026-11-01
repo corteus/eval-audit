@@ -30,7 +30,10 @@ export function formatReport(result, options = {}) {
     `Eval coverage: ${formatCoverage(result.coverage)} (${result.coverage.coveredCallSites}/${result.coverage.totalCallSites} call sites)`
   );
   lines.push(
-    `Eval files: ${result.summary.evalFilesFound}; prompts: ${result.summary.promptsFound}; orphaned prompts: ${result.summary.orphanedPrompts}; CI gated: ${result.ci.gated ? 'yes' : 'no'}`
+    `Including unit tests that import the module: ${formatCoverage(result.coverageIncludingUnitTests)} (${result.coverageIncludingUnitTests.coveredCallSites}/${result.coverageIncludingUnitTests.totalCallSites} call sites)`
+  );
+  lines.push(
+    `Eval files: ${result.summary.evalFilesFound}; unit tests touching LLM code: ${result.summary.unitTestFilesTouchingTargets}; prompts: ${result.summary.promptsFound}; orphaned prompts: ${result.summary.orphanedPrompts}; CI gated: ${result.ci.gated ? 'yes' : 'no'}`
   );
 
   const uncovered = result.callSites.filter((callSite) => !callSite.covered);

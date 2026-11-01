@@ -151,6 +151,7 @@ function shouldSkipDirectory(dirname) {
 
   return (
     IGNORED_DIRECTORIES.has(lower) ||
+    lower.startsWith('.') ||
     lower.includes('credential') ||
     lower.includes('secret')
   );

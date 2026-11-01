@@ -1,0 +1,117 @@
+{
+ "NousResearch/hermes-agent": [
+  "evals exist: yes",
+  "correct",
+  "evals/ holds real quality harnesses (a compaction recall eval with an LLM judge, a browser-use benchmark) plus many HTTP wire/contract probes. Covered call sites map by module import to both kinds; 10 of the 14 covered call sites sit in one large module (agent/auxiliary_client.py) imported by 9 eval files. Coverage is real at module level, not proof that each call site is evaluated."
+ ],
+ "Significant-Gravitas/AutoGPT": [
+  "evals exist: yes",
+  "correct band, weak mapping",
+  "Real eval code: copilot/eval (cost/latency, staleness, style suites) and an onboarding transcription WER harness. copilot/eval says its scorers live in a separate repo (Significant-Gravitas/AgentProbe, public). The one covered call site (copilot/optimize_blocks.py) is matched by folder proximity only and is probably not what those evals exercise."
+ ],
+ "onyx-dot-app/onyx": [
+  "evals exist: yes",
+  "under-claims coverage",
+  "Braintrust evals in backend/onyx/evals import the full chat pipeline (onyx.chat.process_message), so they reach LLM calls indirectly; the tool follows imports one level and links only source_filter.py (via a connector-filter regression eval)."
+ ],
+ "dyad-sh/dyad": [
+  "evals exist: yes",
+  "under-claims coverage",
+  "src/__tests__/evals is an LLM-judged tool-use suite run against production system prompts across several models. The evals call the model directly with production prompts and tools, so only 1 product call site links statically. No workflow runs it."
+ ],
+ "botpress/botpress": [
+  "evals exist: yes",
+  "correct band after fix",
+  "packages/zai/e2e/*.test.ts use @botpress/vai LLM assertions (real evals). v0.2 first reported No evals; adding @botpress/vai detection fixed that. The e2e files reach zai.ts through a helper, so coverage stays 0. Also found: a Twilio client.messages.create counted as an Anthropic call (fixed)."
+ ],
+ "paperclipai/paperclip": [
+  "evals exist: yes",
+  "correct by definition, misleading denominator",
+  "promptfoo agent evals in evals/promptfoo, an eval engine in packages/paperclip-runner/src/eval, and a weekly/manual workflow that runs evals from paperclipai/paperclip-evals (HTTP 404 publicly). That workflow was first reported as CI gating; v0.2 now requires push/PR triggers. Only 2 SDK call sites: most model work is delegated to external agent CLIs."
+ ],
+ "CherryHQ/cherry-studio": [
+  "evals exist: no (tool says yes)",
+  "false positive",
+  "The only eval file is resources/skills/skill-creator/scripts/run_eval.py, a bundled skill script that evaluates skill triggering, not cherry-studio. Should be No evals."
+ ],
+ "bytedance/deer-flow": [
+  "evals exist: yes",
+  "correct",
+  "Eval files include evals for shipped skills (skills/public/skill-reviewer/evals), task-continuity experiment evals under docs/experiments, and scripts/eval_*.py, plus the same bundled skill-creator run_eval.py. None import a call-site module."
+ ],
+ "HKUDS/Vibe-Trading": [
+  "evals exist: yes",
+  "correct",
+  "agent/evals/harness is a deterministic post-run verifier for agent artifact bundles with case files; it reads artifacts rather than importing call-site modules."
+ ],
+ "zhayujie/CowAgent": [
+  "evals exist: yes",
+  "correct",
+  "tests/trajectory_eval.py and two test_*eval*.py files evaluate agent tool-call trajectories against expected tools and arguments."
+ ],
+ "ahmedkhaleel2004/gitdiagram": [
+  "evals exist: yes (tool says no)",
+  "false negative",
+  "experiments/*/judge.ts are LLM-judge harnesses (e.g. a blind edge check of generated diagrams). The folder name is experiments/, so they are not seen as evals, and 12 of the 19 counted call sites are the judges' own model calls."
+ ],
+ "QwenLM/qwen-code": [
+  "evals exist: yes (tool says no)",
+  "false negative",
+  "docs/evaluation.md publishes SWE-bench Verified scores across seven releases (harness not in the repo); integration-tests include a terminal-bench test and live-model tests; e2e.yml runs post-merge and nightly, not as a merge gate."
+ ],
+ "open-webui/open-webui": [
+  "evals exist: none found",
+  "no verdict (call sites missed)",
+  "Model traffic is proxied with aiohttp session.request/post to OpenAI-compatible and Ollama endpoints (routers/openai.py), so the scanner finds 0 SDK call sites and gives no verdict. src/lib/apis/evaluations is the product's model-feedback feature, not an eval suite."
+ ],
+ "langgenius/dify": [
+  "evals exist: none found",
+  "correct, thin denominator",
+  "Only 1 SDK-style call site is visible; dify routes model calls through its own runtime (invoke_llm, defined in api/core/model_manager.py). No eval surface found by a manual search."
+ ],
+ "ItzCrazyKns/Vane": [
+  "evals exist: none found",
+  "correct",
+  "No eval, judge, golden or benchmark files found."
+ ],
+ "linshenkx/prompt-optimizer": [
+  "evals exist: none found",
+  "correct",
+  "evaluation/ folders are the product feature that lets users evaluate prompts (v0.1.0 counted 76 of these files as evals). E2E tests replay recorded (VCR) responses."
+ ],
+ "labring/FastGPT": [
+  "evals exist: none found",
+  "correct, thin denominator",
+  "evaluation/ folders are the product's app-evaluation feature. LLM calls go through an internal wrapper, so only 2 SDK call sites are visible."
+ ],
+ "AstrBotDevs/AstrBot": [
+  "evals exist: none found",
+  "correct",
+  "Provider tests (e.g. tests/test_anthropic_source.py) import every call-site module but mock the provider; they count only in the unit-test column."
+ ],
+ "paperless-ngx/paperless-ngx": [
+  "evals exist: none found",
+  "correct",
+  "src/paperless_ai/tests mock the LLM client; unit-test column only."
+ ],
+ "iOfficeAI/AionUi": [
+  "evals exist: none found",
+  "correct after fix",
+  "v0.2's first broadened .invoke pattern counted 28 Electron IPC calls such as fetchModelList.invoke(); after narrowing, the 5 remaining call sites are real SDK calls. Only startup benchmarks found, no evals."
+ ],
+ "ZhuLinsen/daily_stock_analysis": [
+  "evals exist: yes",
+  "correct band, incidental mapping",
+  "evals/agent_trajectory runs a sample against the real agent executor and scores it (it describes itself as a reporter, not a gate). The one covered call site is src/config.py, linked because the eval imports config, not because it evaluates that call; the agent's own LLM calls are reached indirectly."
+ ],
+ "kortix-ai/suna": [
+  "evals exist: yes",
+  "correct",
+  "apps/white-label/lumen/agent-kit/evals: deterministic scorer with an answer key (extraction, citations, QA, refusal suites) for one white-label app; no import link to the 10 call sites."
+ ],
+ "Graphify-Labs/graphify": [
+  "evals exist: not in repo",
+  "correct",
+  "No eval code in the repo; graphify/benchmark.py measures token reduction, not output quality. BENCHMARKS.md reports QA accuracy from a harness that is not in this repository."
+ ]
+}

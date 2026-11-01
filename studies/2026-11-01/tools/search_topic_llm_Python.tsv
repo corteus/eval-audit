@@ -1,0 +1,101 @@
+117
+NousResearch/hermes-agent	259418	2026-11-01	The agent that grows with you
+Significant-Gravitas/AutoGPT	187854	2026-11-01	AutoGPT is the vision of accessible AI for everyone, to use and to build on. Our mission is to provide the too
+huggingface/transformers	168414	2026-11-01	🤗 Transformers: the model-definition framework for state-of-the-art machine learning models in text, vision, a
+langgenius/dify	160162	2026-11-01	Build Agentic workflows, RAG pipelines, with rich AI model and tool support on one collaborative workspace. De
+open-webui/open-webui	157463	2026-11-01	User-friendly AI Interface (Supports Ollama, OpenAI API, ...)
+langchain-ai/langchain	148821	2026-11-01	The agent engineering platform.
+Graphify-Labs/graphify	140409	2026-11-01	Turn any codebase, with its docs, SQL schemas, configs, and PDFs, into a queryable knowledge graph. A /graphif
+harry0703/MoneyPrinterTurbo	137117	2026-10-31	利用 AI 大模型和自动化工作流，根据主题或关键词一键生成高清短视频。Generate HD short videos from a topic or keyword with an automated AI workf
+browser-use/browser-use	119751	2026-10-31	Open-source Python library for AI browser agents, plus Browser Use Cloud: stealth browsers and a hosted agent 
+TauricResearch/TradingAgents	119400	2026-10-27	TradingAgents: Multi-Agents LLM Financial Trading Framework
+vllm-project/vllm	96056	2026-11-01	A high-throughput and memory-efficient inference and serving engine for LLMs
+unclecode/crawl4ai	86703	2026-11-01	Open-source web crawler and scraper for LLMs and AI agents: any website into clean, LLM-ready Markdown. Run it
+datawhalechina/hello-agents	85613	2026-10-13	📚 《从零开始构建智能体》——从零开始的智能体原理与实践教程
+bytedance/deer-flow	84833	2026-11-01	An open-source long-horizon SuperAgent harness that researches, codes, and creates. With the help of sandboxes
+shareAI-lab/learn-claude-code	79680	2026-10-27	Bash is all you need -  A nano claude code–like 「agent harness」, built from 0 to 1
+unslothai/unsloth	78911	2026-11-01	Local UI to run and train LLMs and diffusion models. Supports GGUF, MLX, Qwen3.8, DeepSeek-V4.1, MiniMax-H3, G
+headroomlabs-ai/headroom	78531	2026-11-01	Compress tool outputs, logs, files, and RAG chunks before they reach the LLM. 20% fewer tokens for coding agen
+rohitg00/ai-engineering-from-scratch	76207	2026-10-29	Learn AI Engineering! Learn it. Build it. Ship it for others.
+hiyouga/LlamaFactory	75821	2026-10-31	Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024)
+asgeirtj/system_prompts_leaks	70579	2026-11-01	Documented system prompts from Anthropic - Claude Fable 5.1, Opus 5.5, Claude Design, Claude Code. OpenAI - Ch
+mem0ai/mem0	68232	2026-10-30	The Memory Layer for AI Agents - Drop-in memory infrastructure for AI agents and apps. Context that persists. 
+ZhuLinsen/daily_stock_analysis	67389	2026-11-01	LLM 驱动的多市场股票智能分析系统：多源行情、实时新闻、决策看板与自动推送，支持零成本定时运行。  LLM-powered multi-market stock analysis system with multi-s
+sansan0/TrendRadar	63345	2026-10-29	⭐AI-driven public opinion & trend monitor with multi-platform aggregation, RSS, and smart alerts.🎯 告别信息过载，你的 A
+blader/humanizer	63275	2026-10-28	Agent skill that removes signs of AI-generated writing from text
+BerriAI/litellm	62492	2026-11-01	The fastest, litest AI Gateway. Rust core with Python SDK. Call 100+ LLM APIs in OpenAI (or native) format wit
+MemPalace/mempalace	60220	2026-10-31	The best-benchmarked open-source AI memory system. And it's free.
+pathwaycom/serviette	58736	2026-10-16	A no-code RAG server that keeps answers in sync with your documents. Works with 8 vector databases. Built on P
+hesreallyhim/awesome-claude-code	57029	2026-11-01	A hand-picked collection of the finest of resources for the most awesome of agents, Claude Code, the undispute
+bojieli/ai-agent-book	56840	2026-10-08	《深入理解 AI Agent：设计原理与工程实践》（李博杰 著）开源主仓库：全书正文、编译版 PDF 与按章配套代码
+run-llama/llama_index	52769	2026-10-26	LlamaIndex is the document processing platform for AI
+zhayujie/CowAgent	47732	2026-11-01	Open-source personal AI assistant & Agent Harness. Plans tasks, runs tools and skills, self-evolves with memor
+paperless-ngx/paperless-ngx	47509	2026-11-01	A community-supported supercharged document management system: scan, index and archive all your documents
+AstrBotDevs/AstrBot	45496	2026-11-01	AI Agent Assistant & development framework that integrates lots of IM platforms, LLMs, plugins and AI feature,
+langchain-ai/langgraph	44274	2026-11-01	Build resilient agents.
+ray-project/ray	44174	2026-11-01	Ray is an AI compute engine. Ray consists of a core distributed runtime and a set of AI Libraries for accelera
+HKUDS/LightRAG	40467	2026-10-29	[EMNLP2025] LightRAG: Simple and Fast Retrieval-Augmented Generation
+VectifyAI/PageIndex	39939	2026-10-29	📑 PageIndex: Document Index for Vectorless, Reasoning-based RAG
+google/langextract	39224	2026-10-30	A Python library for extracting structured information from unstructured text using LLMs with precise source g
+sgl-project/sglang	38342	2026-11-01	SGLang is a high-performance serving framework for large language models and multimodal models.
+p-e-w/heretic	37433	2026-11-01	Training-free language model modification: Remove censorship, suppress slop, reduce sycophancy, and more
+HKUDS/Vibe-Trading	37360	2026-10-30	"Vibe-Trading: Your Personal Trading Agent"
+virgiliojr94/book-to-skill	36699	2026-10-28	Turn any technical book PDF into a Claude Code skill — ready to study, reference, and use while you work.
+microsoft/graphrag	36516	2026-10-29	A modular graph-based Retrieval-Augmented Generation (RAG) system
+mukul975/Anthropic-Cybersecurity-Skills	35393	2026-08-31	817 structured cybersecurity skills for AI agents · Mapped to 6 frameworks: MITRE ATT&CK, NIST CSF 2.0, MITRE 
+agentscope-ai/agentscope	35120	2026-10-30	Build and run agents you can see, understand and trust.
+onyx-dot-app/onyx	33145	2026-11-01	Open Source AI Platform - AI Chat with advanced features that works with every LLM
+ahujasid/mcp-for-blender	32983	2026-10-29	Community plugin to control Blender 3D with any LLM of your choice. Not affiliated with the official Blender F
+tirth8205/code-review-graph	32536	2026-10-29	Local-first code intelligence graph for MCP and CLI. Builds a persistent map of your codebase so AI coding too
+ScrapeGraphAI/Scrapegraph-ai	32417	2026-10-06	Python scraper based on AI
+openai/openai-agents-python	30435	2026-11-01	A lightweight, powerful framework for multi-agent workflows
+Fosowl/agenticSeek	27596	2026-10-22	Fully Local Manus AI. No APIs, No $200 monthly bills. Enjoy an autonomous agent that thinks, browses the web, 
+deepset-ai/haystack	26900	2026-10-31	Open-source AI orchestration framework for building context-engineered, production-ready LLM applications. Des
+Skyvern-AI/skyvern	23328	2026-11-01	Automate browser based workflows with AI
+mlc-ai/mlc-llm	23289	2026-10-30	Universal LLM Deployment Engine with ML Compilation
+jundot/omlx	23261	2026-11-01	LLM inference server with continuous batching & SSD caching for Apple Silicon — managed from the macOS menu ba
+comet-ml/opik	23091	2026-11-01	Debug, evaluate, and monitor your LLM applications, RAG systems, and agentic workflows with comprehensive trac
+1Panel-dev/MaxKB	23086	2026-11-01	🔥 MaxKB is an open-source platform for building enterprise-grade agents.  强大易用的开源企业级智能体平台。
+microsoft/unilm	22237	2026-09-21	Large-scale Self-supervised Pre-training Across Tasks, Languages, and Modalities
+huggingface/datasets	22100	2026-10-30	🤗 The largest hub of ready-to-use datasets for AI models with fast, easy-to-use and efficient data manipulatio
+google/adk-python	22071	2026-11-01	An open-source, code-first Python toolkit for building, evaluating, and deploying sophisticated AI agents with
+huggingface/peft	21865	2026-11-01	🤗 PEFT: State-of-the-art Parameter-Efficient Fine-Tuning.
+KKKKhazix/khazix-skills	21781	2026-10-01	数字生命卡兹克开源的 AI Skills 合集 | Agent Skills: leader（帮你定义目标）, neat-freak 洁癖, hv-analysis, khazix-writer & more — Cla
+pydantic/pydantic-ai	20982	2026-11-01	How Python does AI. Agents, realtime voice, image generation, embeddings. Every model, every interface, typed 
+SWE-agent/SWE-agent	20702	2026-10-26	SWE-agent takes a GitHub issue and tries to automatically fix it, using your LM of choice. It can also be empl
+eosphoros-ai/DB-GPT	20233	2026-10-31	open-source agentic AI data assistant for the next generation of AI + Data products.
+stas00/ml-engineering	19644	2026-10-27	Machine Learning Engineering Open Book
+microsoft/agent-lightning	18863	2026-10-20	The absolute trainer to light up AI agents.
+browser-use/browser-harness	18800	2026-11-01	Let Claude Code, Codex or Cursor use your real Chrome, logged in as you. One prompt to set up. Open source, MI
+langbot-app/LangBot	18658	2026-11-01	Production-grade platform for building agentic IM bots - 生产级多平台智能机器人开发平台/ Agent、知识库编排、插件系统 / Bots for Discord 
+wanshuiyin/Auto-claude-code-research-in-sleep	18432	2026-11-01	ARIS ⚔️ (Auto-Research-In-Sleep) — Lightweight Markdown-only skills for autonomous ML research: cross-model re
+arc53/DocsGPT	18352	2026-11-01	Private AI platform for agents, assistants and enterprise search. Built-in Agent Builder, Deep research, Docum
+xming521/WeClone	18341	2026-11-01	Build a portrait of your life. Assistants that know you. Clones that talk like you.
+emcie-co/parlant	18312	2026-10-28	Build reliable customer-facing AI agents with Parlant: an interaction control harness optimized for controlled
+Canner/WrenAI	18030	2026-10-30	GenBI (Generative BI) for AI agents, an open-source, governed text-to-SQL through an open context layer that t
+MemoriLabs/Memori	17284	2026-10-03	Memori is agent-native memory infrastructure. A LLM-agnostic layer that turns agent execution and conversation
+cft0808/edict	17040	2026-09-28	🏛️ 三省六部制 · OpenClaw Multi-Agent Orchestration System — 9 specialized AI agents with real-time dashboard, model
+Arindam200/awesome-ai-apps	16655	2026-10-30	A collection of projects showcasing RAG, agents, workflows, and other AI use cases
+modelscope/ms-swift	16007	2026-11-01	Use PEFT or Full-parameter to CPT/SFT/DPO/GRPO 600+ LLMs (Qwen3.8, DeepSeek-V4, GLM-5.1, InternLM3, Llama4, ..
+microsoft/RD-Agent	15172	2026-10-21	Research and development (R&D) is crucial for the enhancement of industrial productivity, especially in the AI
+llmware-ai/llmware	14818	2026-10-01	Unified framework for building enterprise RAG pipelines with small, specialized models
+e2b-dev/E2B	14651	2026-10-30	Open-source, secure environment with real-world tools for enterprise-grade agents.
+cactus-compute/needle	14433	2026-11-01	Automation foundation model for tiny devices: 2-bit, 8-29 MB, tool calls, ASR, structured extraction and embed
+semantica-agi/semantica	14371	2026-11-01	Graph-Native Infrastructure for Context and Accountable AI Systems
+EverMind-AI/EverOS	13751	2026-10-30	One portable memory layer for every AI agent: local-first, Markdown-native, user-owned, and self-evolving acro
+StarTrail-org/LEANN	13742	2026-10-30	[MLsys2026 Best Paper]: https://arxiv.org/abs/2506.08276. RAG on Everything with LEANN. Enjoy 97% storage savi
+Lightning-AI/litgpt	13740	2026-11-01	20+ high-performance LLMs with recipes to pretrain, finetune and deploy at scale.
+FareedKhan-dev/train-llm-from-scratch	13079	2026-10-02	A straightforward method for training your LLM, from downloading data to generating text.
+ShishirPatil/gorilla	13062	2026-10-17	Gorilla: Training and Evaluating LLMs for Function Calls (Tool Calls)
+neuml/txtai	13056	2026-11-01	💡 All-in-one AI framework for semantic search, LLM orchestration and language model workflows
+datawhalechina/all-in-rag	12759	2026-09-30	🔍大模型应用开发实战一：RAG 技术全栈指南，在线阅读地址：https://datawhalechina.github.io/all-in-rag/
+axolotl-ai-cloud/axolotl	12650	2026-11-01	Go ahead and axolotl questions
+bentoml/OpenLLM	12575	2026-10-26	Run any open-source LLMs, such as DeepSeek and Llama, as OpenAI compatible API endpoint in the cloud.
+FlagOpen/FlagEmbedding	12292	2026-10-27	Retrieval and Retrieval-augmented LLMs
+LMCache/LMCache	12253	2026-11-01	LMCache: Supercharge Your LLM with the Fastest KV Cache Layer
+dataelement/bisheng	12100	2026-10-31	BISHENG is an open LLM devops platform for next generation Enterprise AI applications. Powerful and comprehens
+ludwig-ai/ludwig	11792	2026-10-27	Low-code framework for building custom LLMs, neural networks, and other AI models
+linyqh/NarratoAI	11671	2026-10-24	利用 AI 大模型，一键解说并剪辑视频
+microsoft/promptflow	11258	2026-10-31	Build high-quality LLM apps - from prototyping, testing to production deployment and monitoring.
+langchain-ai/open-swe	11159	2026-11-01	LangChain's software factory
+omnigent-ai/omnigent	11156	2026-11-01	Omnigent is an open-source AI agent framework and meta-harness: orchestrate Claude Code, Codex, Cursor, Pi, an

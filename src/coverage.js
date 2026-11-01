@@ -20,58 +20,84 @@ const GENERIC_PATH_SEGMENTS = new Set([
 export function mapCoverage(discovery, ci) {
   const callSites = cloneTargets(discovery.callSites);
   const prompts = cloneTargets(discovery.prompts);
-  const candidates = [...discovery.explicitEvalFiles, ...discovery.testFiles];
-  const includedEvalIds = new Set(discovery.explicitEvalFiles.map((candidate) => candidate.id));
+  // Eval evidence: explicit eval files (eval dirs and names, promptfoo, eval frameworks, golden datasets).
+  // Unit tests that merely import an LLM module are reported separately: they usually mock the model,
+  // so they are evidence of testing, not of evaluating model output.
+  const evalCandidates = discovery.explicitEvalFiles.map(withLowerText);
+  const testCandidates = discovery.testFiles.map(withLowerText);
+  const touchingTestIds = new Set();
 
-  for (const callSite of callSites) {
-    callSite.coverage = coverageForTarget(callSite, candidates, 'call-site');
-    callSite.covered = callSite.coverage.length > 0;
-    if (callSite.covered) {
-      for (const reason of callSite.coverage) includedEvalIds.add(reason.evalId);
+  for (const [targets, targetType] of [
+    [callSites, 'call-site'],
+    [prompts, 'prompt']
+  ]) {
+    for (const target of targets) {
+      target.coverage = coverageForTarget(target, evalCandidates, targetType);
+      target.covered = target.coverage.length > 0;
+      target.unitTestCoverage = coverageForTarget(target, testCandidates, targetType);
+      target.coveredIncludingUnitTests = target.covered || target.unitTestCoverage.length > 0;
+      for (const reason of target.unitTestCoverage) touchingTestIds.add(reason.evalId);
     }
   }
 
-  for (const prompt of prompts) {
-    prompt.coverage = coverageForTarget(prompt, candidates, 'prompt');
-    prompt.covered = prompt.coverage.length > 0;
-    if (prompt.covered) {
-      for (const reason of prompt.coverage) includedEvalIds.add(reason.evalId);
-    }
-  }
-
-  const evals = candidates
-    .filter((candidate) => includedEvalIds.has(candidate.id))
+  const evals = evalCandidates.map(publicEval).sort((a, b) => a.file.localeCompare(b.file));
+  const unitTests = testCandidates
+    .filter((candidate) => touchingTestIds.has(candidate.id))
     .map(publicEval)
     .sort((a, b) => a.file.localeCompare(b.file));
 
-  const coveredCallSites = callSites.filter((callSite) => callSite.covered).length;
   const totalCallSites = callSites.length;
-  const percentage = totalCallSites === 0 ? null : roundPercentage((coveredCallSites / totalCallSites) * 100);
+  const coveredCallSites = callSites.filter((callSite) => callSite.covered).length;
+  const coveredIncludingUnitTests = callSites.filter((callSite) => callSite.coveredIncludingUnitTests).length;
+  const percentage = percentOf(coveredCallSites, totalCallSites);
+  const percentageIncludingUnitTests = percentOf(coveredIncludingUnitTests, totalCallSites);
   const verdict = verdictFor({ totalCallSites, evalsFound: evals.length, percentage, ciGated: ci.gated });
+  const verdictIncludingUnitTests = verdictFor({
+    totalCallSites,
+    evalsFound: evals.length + unitTests.length,
+    percentage: percentageIncludingUnitTests,
+    ciGated: ci.gated
+  });
 
   return {
     callSites,
     prompts,
     evals,
+    unitTests,
     verdict,
+    verdictIncludingUnitTests,
     coverage: {
       coveredCallSites,
       totalCallSites,
       percentage
+    },
+    coverageIncludingUnitTests: {
+      coveredCallSites: coveredIncludingUnitTests,
+      totalCallSites,
+      percentage: percentageIncludingUnitTests
     }
   };
+}
+
+function withLowerText(candidate) {
+  return { ...candidate, lowerText: candidate.text.toLowerCase() };
+}
+
+function percentOf(covered, total) {
+  return total === 0 ? null : roundPercentage((covered / total) * 100);
 }
 
 function coverageForTarget(target, candidates, targetType) {
   const reasons = [];
   const seen = new Set();
+  const promptMatcher = targetType === 'prompt' ? buildPromptMatcher(target) : null;
 
   for (const candidate of candidates) {
     let method = null;
 
     if (candidate.imports.includes(target.file)) {
       method = 'module-import';
-    } else if (targetType === 'prompt' && referencesPrompt(candidate.text, target)) {
+    } else if (promptMatcher && promptMatcher(candidate)) {
       method = 'prompt-reference';
     } else if (isProximate(target.file, candidate.file)) {
       method = 'path-proximity';
@@ -92,21 +118,19 @@ function coverageForTarget(target, candidates, targetType) {
   return reasons.sort((a, b) => a.evalFile.localeCompare(b.evalFile) || a.method.localeCompare(b.method));
 }
 
-function referencesPrompt(text, prompt) {
-  const lowerText = text.toLowerCase();
+function buildPromptMatcher(prompt) {
   const lowerFile = prompt.file.toLowerCase();
   const basename = path.posix.basename(lowerFile);
   const stem = basename.replace(/\.[^.]+$/, '');
+  const namePattern = GENERIC_PROMPT_NAMES.has(prompt.name)
+    ? null
+    : new RegExp(`\\b${escapeRegex(prompt.name)}\\b`, 'i');
 
-  if (lowerText.includes(lowerFile)) return true;
-  if (stem.length > 3 && lowerText.includes(stem)) return true;
-
-  if (!GENERIC_PROMPT_NAMES.has(prompt.name)) {
-    const pattern = new RegExp(`\\b${escapeRegex(prompt.name)}\\b`, 'i');
-    return pattern.test(text);
-  }
-
-  return false;
+  return (candidate) => {
+    if (candidate.lowerText.includes(lowerFile)) return true;
+    if (stem.length > 3 && candidate.lowerText.includes(stem)) return true;
+    return namePattern ? namePattern.test(candidate.text) : false;
+  };
 }
 
 function isProximate(targetFile, evalFile) {
@@ -123,25 +147,29 @@ function isProximate(targetFile, evalFile) {
     if (targetDir.startsWith(`${evalDir}/`)) return true;
   }
 
-  const targetFeature = nearestMeaningfulSegment(targetFile);
-  const evalFeature = nearestMeaningfulSegment(evalFile);
-  return Boolean(targetFeature && targetFeature === evalFeature && sharesAncestor(targetFile, evalFile));
+  // Mirror layouts only: once eval/test folders are removed from the eval's directory, it must end
+  // with the target's last two directory names (`agent/x.py` <-> `tests/agent/test_y.py`,
+  // `onyx/llm/x.py` <-> `tests/unit/onyx/llm/test_y.py`). A folder name that merely appears in
+  // both paths (`.../scripts/`, `.../providers/`) does not count.
+  const targetSegments = path.posix.dirname(targetFile).toLowerCase().split('/').filter((s) => s && s !== '.');
+  if (targetSegments.length === 0) return false;
+  const stripped = path.posix
+    .dirname(evalFile)
+    .toLowerCase()
+    .split('/')
+    .filter((segment) => segment && segment !== '.' && !EVAL_OR_TEST_SEGMENTS.has(segment));
+  const tail = targetSegments.slice(-2);
+  if (tail.every((segment) => GENERIC_PATH_SEGMENTS.has(segment))) return false;
+  if (stripped.length < tail.length) return false;
+  if (stripped.length === path.posix.dirname(evalFile).split('/').length) return false;
+  return tail.every((segment, index) => stripped[stripped.length - tail.length + index] === segment);
 }
+
+const EVAL_OR_TEST_SEGMENTS = new Set(['eval', 'evals', 'test', 'tests', '__tests__', 'unit', 'integration', 'e2e']);
 
 function looksEvalLike(filePath) {
   const lower = filePath.toLowerCase();
   return /(?:^|\/)(?:evals?|evaluations?|tests?|__tests__)(?:\/|$)/.test(lower) || /\.(?:eval|test|spec)\./i.test(lower);
-}
-
-function nearestMeaningfulSegment(filePath) {
-  const segments = path.posix.dirname(filePath).toLowerCase().split('/').filter(Boolean).reverse();
-  return segments.find((segment) => !GENERIC_PATH_SEGMENTS.has(segment) && segment.length > 2) ?? null;
-}
-
-function sharesAncestor(a, b) {
-  const aSegments = path.posix.dirname(a).split('/');
-  const bSegments = path.posix.dirname(b).split('/');
-  return aSegments.some((segment) => segment.length > 2 && bSegments.includes(segment));
 }
 
 function verdictFor({ totalCallSites, evalsFound, percentage, ciGated }) {
