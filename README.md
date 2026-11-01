@@ -15,25 +15,21 @@ Code coverage is common. Eval coverage is not. An empirical study of 39 agent fr
 Run against a local repository:
 
 ```sh
-npx eval-audit <path-to-repo>
-```
-
-Run from a checkout of this repo:
-
-```sh
+git clone https://github.com/corteus/eval-audit
+cd eval-audit
 node bin/eval-audit.js <path-to-repo>
 ```
 
 Print JSON:
 
 ```sh
-npx eval-audit --json <path-to-repo>
+node bin/eval-audit.js --json <path-to-repo>
 ```
 
 Fail below a minimum call-site coverage threshold:
 
 ```sh
-npx eval-audit --min-coverage 75 <path-to-repo>
+node bin/eval-audit.js --min-coverage 75 <path-to-repo>
 ```
 
 The tool makes no network calls. It reads local text/source files only, skips common generated directories, and skips dotenv- and credential-like file names at the filesystem walk layer.
