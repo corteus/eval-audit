@@ -1,0 +1,17 @@
+name: Langfuse experiment gate
+on:
+  pull_request:
+jobs:
+  experiment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.14"
+      - uses: langfuse/experiment-action@v1
+        with:
+          langfuse_public_key: ${{ secrets.LANGFUSE_PUBLIC_KEY }}
+          langfuse_secret_key: ${{ secrets.LANGFUSE_SECRET_KEY }}
+          experiment_path: experiments/answer_gate.py
+          dataset_name: support-answers

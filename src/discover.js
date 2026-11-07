@@ -217,6 +217,55 @@ const EVAL_FRAMEWORK_IMPORTS = [
   { type: 'mlflow-evaluate', pattern: /\bmlflow\.(?:genai\.)?evaluate\s*\(/m }
 ];
 
+// Langfuse is mostly used for tracing, so importing it is not an eval. A file counts only when it imports
+// Langfuse and also runs an experiment or an evaluation with the SDK.
+const LANGFUSE_IMPORT =
+  /^\s*(?:from|import)\s+langfuse\b|\bfrom\s+['"](?:langfuse|langfuse-node|@langfuse\/[\w-]+)['"]|\brequire\s*\(\s*['"](?:langfuse|langfuse-node|@langfuse\/[\w-]+)['"]\s*\)/m;
+
+const LANGFUSE_EVAL_CALLS = [
+  // Experiment runner: Python `langfuse.run_experiment(...)`, `dataset.run_experiment(...)`,
+  // `context.run_experiment(...)`; JS/TS `langfuse.experiment.run(...)`, `dataset.runExperiment(...)`,
+  // `context.runExperiment(...)`.
+  // https://langfuse.com/docs/evaluation/experiments/experiments-via-sdk
+  // https://langfuse.com/docs/evaluation/experiments/experiments-ci-cd
+  // A call or a passed reference (`asyncio.to_thread(client.run_experiment, ...)`), not an assignment.
+  /\.(?:run_experiment|runExperiment)\b(?!\s*=)/g,
+  /\.experiment\.run\s*\(/g,
+  // Python `langfuse.run_batched_evaluation(...)` runs evaluators over existing observations.
+  // https://langfuse.com/docs/observability/sdk/upgrade-path/python-v4-to-v5
+  /\.run_batched_evaluation\s*\(/g
+];
+
+// Older SDKs linked each dataset item to a run by hand inside a loop over `dataset.items`:
+// Python v3 `with item.run(run_name=...)`, JS/TS v5 `await item.link(span, "run")`. These count only
+// together with a dataset fetch (`get_dataset(...)`, `getDataset(...)`, `langfuse.dataset.get(...)`).
+// https://langfuse.com/docs/observability/sdk/upgrade-path/python-v3-to-v4
+// https://langfuse.com/docs/observability/sdk/upgrade-path/js-v5-to-v6
+const LANGFUSE_DATASET_FETCH = /\b(?:get_dataset|getDataset)\s*\(|\.dataset\.get\s*\(/g;
+const LANGFUSE_LEGACY_RUN = /\b\w+\.run\s*\(\s*run_name\s*=|\b\w+\.link\s*\(\s*\w+\s*,/g;
+
+// A unit test that mocks the client only checks the wiring around an experiment, not model output.
+const MOCKING = /\bunittest\.mock\b|\bfrom\s+mock\s+import\b|\bMagicMock\b|\bpatch(?:\.object)?\s*\(|\bmocker\.|\b(?:vi|jest)\.(?:mock|fn|spyOn)\s*\(/;
+
+function isLangfuseEval(file, isTest) {
+  if (file.kind !== 'code' || !LANGFUSE_IMPORT.test(file.text)) return false;
+  if (isTest && MOCKING.test(file.text)) return false;
+  if (LANGFUSE_EVAL_CALLS.some((pattern) => hasCodeMatch(file.text, pattern))) return true;
+  return (
+    hasCodeMatch(file.text, LANGFUSE_DATASET_FETCH) &&
+    /\.items\b/.test(file.text) &&
+    hasCodeMatch(file.text, LANGFUSE_LEGACY_RUN)
+  );
+}
+
+function hasCodeMatch(text, pattern) {
+  pattern.lastIndex = 0;
+  for (const match of text.matchAll(pattern)) {
+    if (!looksLikeCommentOrDocs(text, match.index)) return true;
+  }
+  return false;
+}
+
 function classifyFile(file) {
   const lower = file.relativePath.toLowerCase();
   const basename = file.basename.toLowerCase();
@@ -241,6 +290,7 @@ function classifyFile(file) {
   if (promptfoo) return { eval: true, evalType: 'promptfoo', test };
   if (deepeval) return { eval: true, evalType: 'deepeval', test };
   if (framework) return { eval: true, evalType: framework.type, test };
+  if (isLangfuseEval(file, test)) return { eval: true, evalType: 'langfuse', test };
   if (evalName) return { eval: true, evalType: 'eval-file', test };
   if (inEvalDir) return { eval: true, evalType: 'eval-dir', test };
   if (goldenJsonl) return { eval: true, evalType: 'golden-dataset', test };

@@ -10,6 +10,8 @@ const CI_PATTERNS = [
   { type: 'inspect-ai', pattern: /\binspect\s+eval(?:-set)?\b/i },
   { type: 'braintrust', pattern: /\bbraintrust\s+eval\b/i },
   { type: 'evalite', pattern: /\bevalite\b/i },
+  // Official GitHub Action for Langfuse experiments: https://langfuse.com/docs/evaluation/experiments/experiments-ci-cd
+  { type: 'langfuse', pattern: /\blangfuse\/experiment-action\b/i },
   { type: 'openai-evals', pattern: /\boaieval(?:set)?\b/i },
   { type: 'package-script', pattern: /\b(?:npm|pnpm|yarn|bun)\s+(?:run\s+)?evals?(?::[\w-]+)?(?=\s|$|["'])/i },
   { type: 'make', pattern: /\bmake\s+evals?\b/i },

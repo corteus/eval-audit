@@ -1,5 +1,29 @@
 # Changelog
 
+## Unreleased
+
+### Eval-surface detection
+
+- Added Langfuse experiments. A code file counts when it imports Langfuse (`langfuse`, `langfuse-node` or
+  `@langfuse/*`) and also runs an experiment or an evaluation: `run_experiment`/`runExperiment` (on the client, a
+  dataset, or the CI `RunnerContext`, called or passed as a reference), `langfuse.experiment.run(...)`,
+  `run_batched_evaluation(...)`, or a fetched dataset whose items are run with the older Python v3
+  `item.run(run_name=...)` or JS/TS v5 `item.link(span, run)`. Each pattern cites its Langfuse docs page in
+  `src/discover.js`.
+- A Langfuse import alone is tracing and stays `No evals`; so do prompt fetches, `create_score` feedback and dataset
+  reads. Unit tests that mock the client are not counted.
+- A file that calls `run_experiment` without importing Langfuse is not counted (many ML repos define their own
+  `run_experiment`).
+
+### CI gating
+
+- Added the Langfuse experiment GitHub Action (`langfuse/experiment-action`).
+
+### Tests
+
+- Three fixture repos: `langfuse-python` (runner, v3 loop, the GitHub Action), `langfuse-ts` (`experiment.run`,
+  `runExperiment`, v5 `item.link`) and `langfuse-tracing-only` (must stay `No evals`). 16 tests, all passing.
+
 ## 0.2.0 (2026-11-01)
 
 Base: `corteus/eval-audit` at `b35a04a903a85f2c872ba849a1caaa23348d26ae` (0.1.0).

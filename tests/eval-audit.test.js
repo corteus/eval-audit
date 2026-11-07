@@ -199,6 +199,85 @@ test('does not count IPC invoke() or Twilio messages.create() as LLM calls; sche
   assert.equal(result.ci.gated, false);
 });
 
+test('counts Langfuse Python experiments (runner and v3 item.run) and the Langfuse experiment action', async () => {
+  const result = await analyzeRepository(path.join(fixtures, 'langfuse-python'));
+
+  assert.deepEqual(
+    result.evals.map((entry) => [entry.file, entry.type]),
+    [
+      ['experiments/answer_gate.py', 'langfuse'],
+      ['experiments/route_baseline.py', 'langfuse']
+    ]
+  );
+  assert.equal(result.coverage.coveredCallSites, 2);
+  assert.equal(result.coverage.totalCallSites, 2);
+  assert.equal(result.ci.gated, true);
+  assert.deepEqual(
+    result.ci.commands.map((command) => [command.type, command.file]),
+    [['langfuse', '.github/workflows/langfuse-experiment.yml']]
+  );
+  assert.equal(result.verdict, 'Gated in CI');
+});
+
+test('counts Langfuse JS/TS experiments (experiment.run, runExperiment, v5 item.link)', async () => {
+  const result = await analyzeRepository(path.join(fixtures, 'langfuse-ts'));
+
+  assert.deepEqual(
+    result.evals.map((entry) => [entry.file, entry.type]),
+    [
+      ['experiments/agent-gate.ts', 'langfuse'],
+      ['scripts/classify-experiment.ts', 'langfuse'],
+      ['scripts/summarize-baseline.ts', 'langfuse']
+    ]
+  );
+  assert.equal(result.coverage.coveredCallSites, 3);
+  assert.equal(result.coverage.totalCallSites, 3);
+  assert.equal(result.ci.gated, false);
+  assert.equal(result.verdict, 'Well covered');
+});
+
+test('Langfuse tracing, prompts, feedback scores and dataset reads alone are not evals', async () => {
+  const result = await analyzeRepository(path.join(fixtures, 'langfuse-tracing-only'));
+
+  assert.equal(result.summary.evalFilesFound, 0);
+  assert.equal(result.coverage.totalCallSites, 2);
+  assert.equal(result.coverage.coveredCallSites, 0);
+  assert.equal(result.ci.gated, false);
+  assert.equal(result.verdict, 'No evals');
+
+  const { classifyFile } = await import('../src/discover.js');
+  const code = (relativePath, text) => ({ relativePath, basename: path.posix.basename(relativePath), kind: 'code', text });
+  // an experiment call without a Langfuse import belongs to some other library
+  assert.equal(classifyFile(code('app/lab.py', 'result = lab.run_experiment(cfg)\n')).eval, false);
+  assert.equal(classifyFile(code('app/tracing.ts', "import { observe } from '@langfuse/tracing';\n")).eval, false);
+  assert.equal(
+    classifyFile(code('app/batch.py', 'from langfuse import get_client\nget_client().run_batched_evaluation(mapper=m)\n'))
+      .evalType,
+    'langfuse'
+  );
+  assert.equal(
+    classifyFile(code('app/old.js', "const { Langfuse } = require('langfuse');\nawait langfuse.experiment.run({ task })\n")).evalType,
+    'langfuse'
+  );
+  // the runner passed as a reference to a worker thread still counts
+  assert.equal(
+    classifyFile(
+      code('app/exp.py', 'from langfuse import Langfuse\nawait asyncio.to_thread(client.run_experiment, name=ds, task=task)\n')
+    ).evalType,
+    'langfuse'
+  );
+  // a unit test that mocks the runner is not an eval
+  assert.equal(
+    classifyFile(
+      code(
+        'tests/test_helpers.py',
+        'from unittest.mock import patch\nfrom langfuse import Evaluation\n\ndef test_run():\n    helpers.run_experiment(args)\n'
+      )
+    ).eval,
+    false
+  );
+});
+
 test('CLI --max-files limits the walk and is reported', async () => {
   const result = await execCli(['--json', '--max-files', '2', path.join(fixtures, 'python-app')]);
   const parsed = JSON.parse(result.stdout);
